@@ -79,7 +79,9 @@ RUN set -ex \
 	&& apk add --virtual .python-rundeps $runDeps \
 	&& apk del .build-deps \
 	&& rm -rf /usr/src/python ~/.cache \
-    && cp /usr/local/bin/pip3.7 /usr/local/bin/pip3  # reenable pip3
+	&& cp /usr/local/bin/python3 /usr/local/bin/python \
+	&& cp /usr/local/bin/pip3.7 /usr/local/bin/pip3 \ # reenable pip3
+	&& cp /usr/local/bin/pip3 /usr/local/bin/pip
 
 RUN ls -Fla /usr/local/bin/p* \
     && which python  && python -V \
@@ -89,4 +91,4 @@ RUN ls -Fla /usr/local/bin/p* \
     && which pip2    && pip2 -V \
     && which pip3    && pip3 -V
 
-CMD ["python2"]
+CMD ["python3"]
